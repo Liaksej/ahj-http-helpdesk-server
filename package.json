@@ -1,0 +1,27 @@
+{
+  "name": "ahj-http-helpdesk-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Liaksej",
+  "license": "MIT",
+  "type": "commonjs",
+  "scripts": {
+    "serve": "localhost:9000",
+    "lint": "eslint . "
+  },
+  "devDependencies": {
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-jest": "^27.2.2",
+    "eslint-plugin-prettier": "^5.0.0",
+    "jest": "^29.6.1",
+    "live-server": "^1.2.2",
+    "open": "^9.1.0",
+    "prettier": "3.0.1"
+  },
+  "dependencies": {
+    "@koa/cors": "^4.0.0",
+    "koa": "^2.14.2",
+    "uuid": "^9.0.0"
+  }
+}
