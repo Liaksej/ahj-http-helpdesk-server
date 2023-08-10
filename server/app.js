@@ -7,22 +7,22 @@ const app = new Koa();
 const tickets = [];
 const ticketsFull = [];
 
-// app.use(async (ctx, next) => {
-//   if (ctx.request.method !== "OPTIONS") {
-//     await next();
-//
-//     return;
-//   }
-//
-//   ctx.response.set("Access-Control-Allow-Origin", "*");
-//
-//   ctx.response.set(
-//     "Access-Control-Allow-Methods",
-//     "DELETE, PUT, PATCH, GET, POST",
-//   );
-//
-//   ctx.response.status = 204;
-// });
+app.use(async (ctx, next) => {
+  if (ctx.request.method !== "OPTIONS") {
+    await next();
+
+    return;
+  }
+
+  ctx.response.set("Access-Control-Allow-Origin", "*");
+
+  ctx.response.set(
+    "Access-Control-Allow-Methods",
+    "DELETE, PUT, PATCH, GET, POST",
+  );
+
+  ctx.response.status = 204;
+});
 
 app.use(bodyParser());
 app.use(async (ctx) => {
@@ -48,7 +48,7 @@ app.use(async (ctx) => {
           tickets.push(newTicket);
           ticketsFull.push(newTicketFull);
           ctx.status = 201;
-          ctx.body = `Request Body: ${JSON.stringify(ctx.request.body)}`;
+          ctx.body = newTicket.id;
         } else {
           ctx.status = 400;
           ctx.body = "Отсутствует тело запроса";
