@@ -1,12 +1,12 @@
 const { v4: uuidv4 } = require("uuid");
-const TicketFull = require("TicketFull");
+const TicketFull = require("./TicketFull");
 
 class Ticket {
   constructor(name, status) {
     this.id = uuidv4();
     this.name = name;
     this.status = status;
-    this.created = new Date.now();
+    this.created = Date.now();
   }
 
   createTicketFull(description) {
