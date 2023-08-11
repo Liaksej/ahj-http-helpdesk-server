@@ -80,6 +80,22 @@ app.use(async (ctx) => {
           ctx.body = "Отсутствует тело запроса";
         }
         break;
+      case "deleteTicketById":
+        if (ctx.request.body) {
+          tickets.splice(
+            tickets.findIndex((ticket) => ticket.id === id),
+            1,
+          );
+          ticketsFull.splice(
+            ticketsFull.findIndex((ticket) => ticket.id === id),
+            1,
+          );
+          ctx.status = 201;
+        } else {
+          ctx.status = 400;
+          ctx.body = "Отсутствует тело запроса";
+        }
+        break;
       default:
         ctx.status = 404;
         return;
