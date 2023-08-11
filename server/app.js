@@ -62,6 +62,27 @@ app.use(async (ctx) => {
           ctx.body = "Отсутствует тело запроса";
         }
         break;
+      case "changeStatus":
+        if (ctx.request.body) {
+          let editedTicket = tickets.find((ticket) => {
+            return ticket.id === id;
+          });
+          let editedTicketFull = ticketsFull.find((ticketFull) => {
+            return ticketFull.id === id;
+          });
+          if (editedTicket) {
+            if (editedTicket.status !== ctx.request.body.status) {
+              editedTicket.status = ctx.request.body.status;
+              editedTicketFull.status = ctx.request.body.status;
+            }
+          }
+          ctx.status = 200;
+          ctx.body = editedTicket;
+        } else {
+          ctx.status = 400;
+          ctx.body = "Отсутствует тело запроса";
+        }
+        break;
       case "createTicket":
         if (ctx.request.body) {
           let newTicket = new Ticket(
