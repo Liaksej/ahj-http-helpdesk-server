@@ -6,7 +6,7 @@
   "license": "MIT",
   "type": "commonjs",
   "scripts": {
-    "serve": "localhost:9000",
+    "serve": "localhost:8081",
     "lint": "eslint . "
   },
   "devDependencies": {

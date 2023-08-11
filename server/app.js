@@ -38,6 +38,30 @@ app.use(async (ctx) => {
         ctx.status = 200;
         ctx.body = ticketsFull.find((ticket) => ticket.id === id);
         break;
+      case "editTicket":
+        if (ctx.request.body) {
+          let editedTicket = tickets.find((ticket) => {
+            return ticket.id === id;
+          });
+          let editedTicketFull = ticketsFull.find((ticketFull) => {
+            return ticketFull.id === id;
+          });
+          if (editedTicket) {
+            if (editedTicket.name !== ctx.request.body.name) {
+              editedTicket.name = ctx.request.body.name;
+              editedTicketFull.name = ctx.request.body.name;
+            }
+            if (editedTicketFull.description !== ctx.request.body.description) {
+              editedTicketFull.description = ctx.request.body.description;
+            }
+          }
+          ctx.status = 200;
+          ctx.body = editedTicket;
+        } else {
+          ctx.status = 400;
+          ctx.body = "Отсутствует тело запроса";
+        }
+        break;
       case "createTicket":
         if (ctx.request.body) {
           let newTicket = new Ticket(
@@ -50,12 +74,11 @@ app.use(async (ctx) => {
           tickets.push(newTicket);
           ticketsFull.push(newTicketFull);
           ctx.status = 201;
-          ctx.body = newTicket.id;
+          ctx.body = newTicket;
         } else {
           ctx.status = 400;
           ctx.body = "Отсутствует тело запроса";
         }
-
         break;
       default:
         ctx.status = 404;
