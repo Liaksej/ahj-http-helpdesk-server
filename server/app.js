@@ -56,7 +56,7 @@ app.use(async (ctx) => {
             }
           }
           ctx.status = 200;
-          ctx.body = editedTicket;
+          ctx.body = tickets;
         } else {
           ctx.status = 400;
           ctx.body = "Отсутствует тело запроса";
@@ -77,7 +77,7 @@ app.use(async (ctx) => {
             }
           }
           ctx.status = 200;
-          ctx.body = editedTicket;
+          ctx.body = tickets;
         } else {
           ctx.status = 400;
           ctx.body = "Отсутствует тело запроса";
@@ -95,7 +95,7 @@ app.use(async (ctx) => {
           tickets.push(newTicket);
           ticketsFull.push(newTicketFull);
           ctx.status = 201;
-          ctx.body = newTicket;
+          ctx.body = tickets;
         } else {
           ctx.status = 400;
           ctx.body = "Отсутствует тело запроса";
@@ -111,7 +111,8 @@ app.use(async (ctx) => {
             ticketsFull.findIndex((ticket) => ticket.id === id),
             1,
           );
-          ctx.status = 201;
+          ctx.status = 200;
+          ctx.body = tickets;
         } else {
           ctx.status = 400;
           ctx.body = "Отсутствует тело запроса";
