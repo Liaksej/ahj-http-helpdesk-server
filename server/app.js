@@ -77,7 +77,7 @@ app.use(async (ctx) => {
             }
           }
           ctx.status = 200;
-          ctx.body = tickets;
+          ctx.body = editedTicket;
         } else {
           ctx.status = 400;
           ctx.body = "Отсутствует тело запроса";
